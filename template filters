@@ -1,0 +1,32 @@
+views.py-testapp::
+
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def greeting(request):
+    s1="<h1>hello welcome shit fucker</h1>"
+    return HttpResponse(s1)
+def showcontact(request):
+        s1="<h1>this is showcontact page</h1>"
+        return HttpResponse(s1)
+def about(request):
+    msg="this is a msg page"
+    l1=[10,20,30]
+    x=11
+
+    return render(request,'testapp/about.html',{'msg':msg,'l1':l1,'x':x})
+TEMPLATES/TESTAPP/ABOUT.HTML
+<!DOCTYPE html>
+<html>
+<head><title>welcome ot this page</title>
+  </head>
+  <body>
+    <h1>{{msg|capfirst}}</h1>
+    <h2>
+      above heading contains {{msg|wordcount}}
+      </h2>
+      <h3>{{l1|first}}</h3>
+      <h4>{{x|divisibleby:"3"}}
+    </body>
+    </html>
