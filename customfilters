@@ -1,0 +1,41 @@
+++++apptags.py
+from django import template
+import datetime
+register=template.Library()
+@register.simple_tag(name="getdate")
+def get_date():
+    seo=datetime.datetime.now()
+    return seo
+@register.filter
+def quotes(value):
+  s='"'+value+'"'
+  return s
+
+ABOUT.HTML+++++
+<!DOCTYPE html>
+<html>
+<head><title>welcome ot this page</title>
+  </head>
+  <body>
+    {% load app_tags %}
+
+
+  <h1>{{text|quotes}}</h1>
+    </body>
+    </html>
+
+TESTAPP-VIWS.PY
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def greeting(request):
+    s1="<h1>hello welcome shit fucker</h1>"
+    return HttpResponse(s1)
+def showcontact(request):
+        s1="<h1>this is showcontact page</h1>"
+        return HttpResponse(s1)
+def about(request):
+    text="this is hit"
+
+
+    return render(request,'testapp/about.html',{'text':text})
